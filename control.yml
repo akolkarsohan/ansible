@@ -1,0 +1,6 @@
+---
+- hosts: control
+  connection: local
+  become: true
+  roles:
+    - control

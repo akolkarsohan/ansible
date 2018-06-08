@@ -1,0 +1,5 @@
+---
+- hosts: loadbalancer
+  become: True
+  roles:
+    - nginx

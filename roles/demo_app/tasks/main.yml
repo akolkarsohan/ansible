@@ -1,0 +1,61 @@
+---
+# tasks file for demo_app
+
+  - name: install necessary packages
+    apt: name={{item}} state=present update_cache=yes
+    with_items:
+      - awscli
+      - python-pip
+      - python-boto
+      - python-botocore
+      - python-virtualenv
+      - python-mysqldb
+
+  - pip:
+      name: boto3
+
+  - name: Creates directory
+    file:
+      path: /var/www/demo
+      state: directory
+#      owner:
+#      group: ec2-user
+      mode: 0775
+
+  - name: get s3_bucket_items
+    s3:
+      mode: list
+      bucket: "masteringansible"
+      prefix: "demo"
+    register: s3_bucket_items
+
+  - name: copy demo app source
+    s3:
+      bucket: "masteringansible"
+      object: "{{item}}"
+      dest: "/var/www/demo/{{item|basename}}"
+      mode: get
+    with_items: "{{s3_bucket_items.s3_keys}}"
+    notify: restart apache2
+
+  - name: copy demo app conf file
+    s3:
+      bucket: "masteringansible"
+      object: "demo/demo.conf"
+      dest: "/etc/apache2/sites-available/demo.conf"
+      mode: get
+  
+  - name: set permission for host config file
+    file:
+      path: "/etc/apache2/sites-available"
+      mode: 0755
+    notify: restart apache2
+
+  - name: setup python virtualenv
+    pip: requirements=/var/www/demo/requirements.txt virtualenv=/var/www/demo/.venv
+    notify: restart apache2
+
+  - name: activate demo apache site
+    file: src=/etc/apache2/sites-available/demo.conf dest=/etc/apache2/sites-enabled/demo.conf state=link
+    notify: restart apache2
+

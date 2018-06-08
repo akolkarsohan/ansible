@@ -1,0 +1,11 @@
+control ansible_connection=local ansible_python_interpreter=/usr/bin/python
+
+loadbalancer
+
+database
+
+[webserver]
+  webserver1 ansible_python_interpreter=/usr/bin/python
+  webserver2 ansible_python_interpreter=/usr/bin/python
+
+
