@@ -1,0 +1,8 @@
+---
+- name: Create a Scenario 2 VPC with public and private subnets in two AZs
+  hosts: localhost
+  connection: local
+  gather_facts: yes
+
+  roles:
+  - { role: aws-vpc, remote_cidr: 103.90.200.70/32, aws_env: dev01, vpc_status: delete, vpc_region: us-east-1 }
