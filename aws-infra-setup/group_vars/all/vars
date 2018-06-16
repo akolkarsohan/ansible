@@ -1,0 +1,49 @@
+---
+# Variables here are applicable to all host groups
+# Adjust these to your specific needs...
+
+# NTP paramters
+httpd_port: 80
+ntpserver: 192.168.1.2
+
+# Apache parameters
+apache_test_message: This is test -
+apache_max_keep_alive_requests: 115
+apache_docroot: /var/www/html
+apache_config: /etc/httpd/conf/
+sites_avilable: /etc/httpd/conf/sites-availble
+sites_enabled: /etc/httpd/conf/sites-enabled
+apache_dirs: /var/www/html/
+
+# Ansible parameters
+ansible_os_family: Redhat
+ansible_groups: webserver
+
+
+# AWS parameters
+aws_region: "us-east-1"
+aws_az1: "{{ aws_region }}a"
+aws_az2: "{{ aws_region }}c"
+
+# VPC parameters
+vpc_name: "vpc-{{ aws_env }}"
+vpc_cidr: "11.0.0.0/16"
+
+# Subnet CIDR defs
+public_subnet_az1_cidr:  "11.0.0.0/24"
+public_subnet_az2_cidr:  "11.0.2.0/24"
+private_subnet_az1_cidr: "11.0.1.0/24"
+private_subnet_az2_cidr: "11.0.3.0/24"
+
+# Access location CIDR defs (used in NACLs and SGs)
+public_cidr: "0.0.0.0/0"
+
+# security group parameters
+private_sg_name: "PrivateSecurityGroup"
+public_sg_name:  "PublicSecurityGroup"
+
+# EC2 instance parameters
+ec2_key_name: NVirginiaAnsibleKP
+ec2_instance_type: t2.micro
+ec2_image: ami-6871a115
+ec2_count: 1

@@ -1,0 +1,8 @@
+---
+- name: download epel-release link
+  get_url: 
+    url: http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+    dest: /home/sohan/epel-release-latest-7.noarch.rpm 
+    
+- name: install epel-release
+  yum: name="epel-release-latest-7.noarch.rpm" state=present

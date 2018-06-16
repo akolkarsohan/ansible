@@ -1,0 +1,11 @@
+[local]
+  localhost ansible_connection=local ansible_python_interpreter=/usr/bin/python
+
+[webserver]
+webserver1  ansible_python_interpreter=/usr/bin/python
+35.170.197.119
+34.231.225.84
+18.209.87.243
+34.205.203.219
+
+

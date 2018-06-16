@@ -1,0 +1,26 @@
+---
+
+#- name: installing ansible prereq for ec2
+#  shell: |
+#    useradd sohan
+#    echo sakolkar | passwd sohan --stdin
+#    usermod -aG sudo sohan
+#  args:
+#    executable: /bin/bash
+
+- name: install packages
+  yum: name={{item}} state=present
+  with_items:
+    - curl
+    - vim
+    - wget
+    - python2-pip
+    - '*'
+#    - python2-boto3
+#    - python2-botocore
+
+- pip:
+    name:
+      - boto3
+      - botocore
+

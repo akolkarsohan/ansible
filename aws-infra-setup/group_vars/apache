@@ -1,0 +1,10 @@
+---
+
+apache_test_message: This is test -
+apache_max_keep_alive_requests: 115
+apache_docroot: /var/www/html
+apache_config: /etc/httpd/conf/httpd.conf
+sites_avilable: /etc/httpd/conf/sites-availble
+sites_enabled: /etc/httpd/conf/sites-enabled
+apache_dirs: /var/www/html 
+ansible_os_family= Redhat

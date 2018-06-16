@@ -1,0 +1,7 @@
+---
+# tasks file for common
+
+- include: epel_release.yml
+- include: install_packages.yml
+- include: selinux.yml
+- include: ntp.yml

@@ -1,0 +1,13 @@
+---
+- name: bootstrap new servers
+  hosts: webserver
+  gather_facts: yes
+  become: true
+  
+  vars_files:
+  - group_vars/all/vars
+  - group_vars/all/vault
+
+  roles:
+    - common
+    - apache

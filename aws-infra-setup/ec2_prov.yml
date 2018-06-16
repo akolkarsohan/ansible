@@ -1,0 +1,13 @@
+---
+- name: provision ec2 instance
+  hosts: localhost
+  connection: local
+  gather_facts: yes
+
+  vars_files:
+  - group_vars/all/vars
+  - group_vars/all/vault
+
+  roles:
+    - { role: ec2-create, vpc_region: us-east-1, aws_env: dev01 }
+

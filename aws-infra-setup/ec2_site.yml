@@ -1,0 +1,5 @@
+---
+- include: vpc_prov.yml
+- include: ec2_prov.yml
+- include: ec2_install_packages.yml
+
