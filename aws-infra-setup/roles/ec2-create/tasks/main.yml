@@ -87,7 +87,7 @@
   with_items: "{{ec2.instances}}"
 
 - name: changing passwd
-  shell: ssh -i {{ ec2_key_name }}.pem ec2-user@{{ item.public_ip }} 'echo sohan:sakolkar | sudo chpasswd'
+  shell: ssh -i {{ ec2_key_name }}.pem ec2-user@{{ item.public_ip }} 'echo sohan:yourpassword | sudo chpasswd'
   with_items: "{{ec2.instances}}"
 
 - name: restart sshd service
